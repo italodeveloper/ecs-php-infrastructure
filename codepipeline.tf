@@ -1,0 +1,15 @@
+module "ecs_push_pipeline" {
+  source             = "./modules/codepipeline"
+  name               = "app"
+  namespace          = "eg"
+  stage              = "staging"
+  github_oauth_token = "8dcd3f0bc064a5649768e7c38ce6fd59c9476678"
+  repo_owner         = "italodeveloper"
+  repo_name          = "expressive"
+  branch             = "master"
+  build_image        = "aws/codebuild/docker:18.09.0"
+  buildspec          = "buildspec/buildspec.yml"
+  service_name       = "terraform_ecs_service"
+  ecs_cluster_name   = "terraform_cluster"
+  privileged_mode    = "true"
+}
